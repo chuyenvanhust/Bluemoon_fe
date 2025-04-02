@@ -213,7 +213,7 @@ const FeeManagement = () => {
             <tr key={fee.id}>
               <td>{fee.roomNumber}</td>
               <td>{fee.description}</td>
-              <td>${Number(fee.amount).toFixed(2)}</td>
+              <td>{Number(fee.amount)}vnd</td>
               <td>{format(new Date(fee.dueDate), 'dd/MM/yyyy')}</td>
               <td>
                 <select 
