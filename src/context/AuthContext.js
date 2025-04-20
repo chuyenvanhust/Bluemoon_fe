@@ -96,10 +96,10 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const currentPath = location.pathname;
-    const publicRoutes = ["/login", "/signup", "/lobby", "/"];
+    const publicRoutes = ["/login", "/signup","/forgot","/otp","/reset", "/lobby", "/"];
 
     if (user.isAuthenticated) {
-      if (["/login", "/signup"].includes(currentPath)) {
+      if (["/login", "/signup","/forgot","/otp","/reset"].includes(currentPath)) {
         navigate(getAllowedRoutes(user.roles)[0] || "/", { replace: true });
         return;
       }

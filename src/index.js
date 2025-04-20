@@ -6,12 +6,12 @@ import { NavbarProvider } from "./context/NavbarContext";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import "./assets/scss/auth.scss";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
-      <AuthProvider>  {/* ✅ Bọc AuthProvider trước */}
+      <AuthProvider>  
         <NavbarProvider>
           <App />
         </NavbarProvider>

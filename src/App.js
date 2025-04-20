@@ -16,6 +16,10 @@ import Resident from "./pages/auth/resident/Resident";
 import Settings from "./pages/addon/settings/Settings";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
+
+import Forgot from "./components/views/login/Forgot";
+import OTPSent from "./components/views/login/OTPSent";
+import Reset from "./components/views/login/Reset";
 import Splash from "./pages/addon/splash/Splash";
 import Waiting from "./pages/addon/waiting/Waiting";
 import NotFoundPage from "./pages/notfound/404";
@@ -31,6 +35,9 @@ function App() {
         <Route path="/lobby" element={<Lobby />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot" element={<Forgot />} />
+        <Route path="/otp" element={<OTPSent />} />
+        <Route path="/reset" element={<Reset />} />
         <Route path="/waiting" element={<Waiting />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<NotFoundPage />} />
