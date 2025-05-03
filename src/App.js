@@ -1,7 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext"; 
-import { NavbarProvider } from "./context/NavbarContext"; 
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import { NavbarProvider } from "./context/NavbarContext";
 import NavbarSelector from "./components/NavbarSelector";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
@@ -16,20 +16,26 @@ import Resident from "./pages/auth/resident/Resident";
 import Settings from "./pages/addon/settings/Settings";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
-
 import Forgot from "./components/views/login/Forgot";
 import OTPSent from "./components/views/login/OTPSent";
 import Reset from "./components/views/login/Reset";
+
 import Splash from "./pages/addon/splash/Splash";
 import Waiting from "./pages/addon/waiting/Waiting";
 import NotFoundPage from "./pages/notfound/404";
 import Lobby from "./pages/lobby/Lobby";
-import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/scss/auth.scss";
+
+const AppContent = () => {
+  const location = useLocation();
+  const hideNavbarPaths = ["/login", "/signup", "/forgot", "/otp", "/reset"];
+  const hideNavbar = hideNavbarPaths.includes(location.pathname);
+
   return (
-    <div>  {/* ✅ Bọc App trong div để tránh lỗi Bootstrap layout */}
-      <NavbarSelector />
+    <div>
+      {!hideNavbar && <NavbarSelector />}
       <Routes>
         <Route path="/" element={<Splash />} />
         <Route path="/lobby" element={<Lobby />} />
@@ -50,11 +56,20 @@ function App() {
           <Route path="/admin/users" element={<UserManagement />} />
           <Route path="/admin/guests" element={<GuestManagement />} />
           <Route path="/admin/fees" element={<FeeManagement />} />
-
           <Route path="/resident" element={<Resident />} />
         </Route>
       </Routes>
     </div>
+  );
+};
+
+function App() {
+  return (
+      <AuthProvider>
+        <NavbarProvider>
+          <AppContent />
+        </NavbarProvider>
+      </AuthProvider>
   );
 }
 
